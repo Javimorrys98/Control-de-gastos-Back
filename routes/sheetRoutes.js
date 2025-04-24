@@ -4,10 +4,9 @@ import { createSheet, deleteSheet } from "../controllers/sheetController.js";
 
 const router = express.Router();
 
-router
-  .route("/")
-  .post(authMiddleware, createSheet)
-  .delete(authMiddleware, deleteSheet);
+router.route("/").post(authMiddleware, createSheet);
+
+router.route("/:id").delete(authMiddleware, deleteSheet);
 
 // router.route("/:sheet/variable").get(authMiddleware, getUserSheets);
 // router.route("/:sheet/fixed").get(authMiddleware, getUserSheets);
