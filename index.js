@@ -7,6 +7,8 @@ import expenseRoutes from "./routes/expenseRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import sheetRoutes from "./routes/sheetRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import payerRoutes from "./routes/payerRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 
 // Configura las variables de entorno
 dotenv.config();
@@ -59,6 +61,8 @@ app.use("/api/expenses", expenseRoutes);
 app.use("/api/sheets", sheetRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/payers", payerRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // Definir un puerto
 const port = process.env.PORT || 4000;

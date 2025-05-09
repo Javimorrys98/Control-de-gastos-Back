@@ -11,7 +11,7 @@ const router = express.Router();
 router.route("/").post(authMiddleware, createExpense);
 
 router
-  .route("/:id")
+  .route("/:sheetId/:expenseId")
   .put(authMiddleware, updateExpense)
   .delete(authMiddleware, deleteExpense);
 
