@@ -2,6 +2,7 @@ import Hojas from "../models/Hojas.js";
 import Categorias from "../models/Categorias.js";
 import Pagadores from "../models/Pagadores.js";
 import Gasto from "../models/Gasto.js";
+import Ingreso from "../models/Ingreso.js";
 
 const getUserSheets = async (req, res) => {
   const { user } = req.params;
@@ -135,6 +136,24 @@ const getUserCashExpenses = async (req, res) => {
   }
 };
 
+const getUserIncomes = async (req, res) => {
+  const { user, sheetId } = req.params;
+
+  if (user !== req.user._id.toString()) {
+    const error = new Error("Acceso denegado");
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    const query = { sheetId };
+    const incomes = await Ingreso.find(query);
+
+    res.json(incomes);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const createPayer = async (req, res) => {
   const payer = req.body;
   payer.user = req.user._id.toString();
@@ -176,4 +195,5 @@ export {
   getUserFixedExpenses,
   getUserVariableExpenses,
   getUserCashExpenses,
+  getUserIncomes,
 };

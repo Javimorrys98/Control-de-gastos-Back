@@ -7,7 +7,7 @@ import {
   getUserFixedExpenses,
   getUserVariableExpenses,
   getUserCashExpenses,
-  // getUserIncomes,
+  getUserIncomes,
 } from "../controllers/userController.js";
 
 const router = express.Router();
@@ -24,6 +24,6 @@ router
 router
   .route("/:user/:sheetId/cash-expenses")
   .get(authMiddleware, getUserCashExpenses);
-// router.route("/:user/incomes").get(authMiddleware, getUserIncomes);
+router.route("/:user/:sheetId/incomes").get(authMiddleware, getUserIncomes);
 
 export default router;
