@@ -1,6 +1,7 @@
 import Hojas from "../models/Hojas.js";
 import Categorias from "../models/Categorias.js";
 import Pagadores from "../models/Pagadores.js";
+import Plantillas from "../models/Plantillas.js"
 import Gasto from "../models/Gasto.js";
 import Ingreso from "../models/Ingreso.js";
 
@@ -53,6 +54,28 @@ const getUserPayers = async (req, res) => {
     const payers = await Pagadores.find(query);
 
     res.json(payers);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUserTemplates = async (req, res) => {
+  const { user } = req.params;
+
+  if (user !== req.user._id.toString()) {
+    const error = new Error("Acceso denegado");
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    const query = { user, isActive: true };
+    const templates = await Plantillas.find(query)
+      .populate({
+          path: "category",
+          select: "name",
+        });
+
+    res.json(templates);
   } catch (error) {
     console.log(error);
   }
@@ -190,6 +213,7 @@ export {
   getUserSheets,
   getUserCategories,
   getUserPayers,
+  getUserTemplates,
   createPayer,
   createCategory,
   getUserFixedExpenses,

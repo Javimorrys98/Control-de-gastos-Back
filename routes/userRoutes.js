@@ -4,6 +4,7 @@ import {
   getUserSheets,
   getUserCategories,
   getUserPayers,
+  getUserTemplates,
   getUserFixedExpenses,
   getUserVariableExpenses,
   getUserCashExpenses,
@@ -15,6 +16,7 @@ const router = express.Router();
 router.route("/:user/sheets").get(authMiddleware, getUserSheets);
 router.route("/:user/categories").get(authMiddleware, getUserCategories);
 router.route("/:user/payers").get(authMiddleware, getUserPayers);
+router.route("/:user/templates").get(authMiddleware, getUserTemplates)
 router
   .route("/:user/:sheetId/fixed-expenses")
   .get(authMiddleware, getUserFixedExpenses);
