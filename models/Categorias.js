@@ -10,6 +10,10 @@ const categoriasSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Usuarios',
         required: true,
+    },
+    isActive: {
+        type: Boolean,
+        default: true,
     }
 })
 

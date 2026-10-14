@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.route("/").post(authMiddleware, createPayer);
 
-router.route("/:id").delete(authMiddleware, removePayer);
+router.route("/:id/remove").patch(authMiddleware, removePayer);
 
 export default router;

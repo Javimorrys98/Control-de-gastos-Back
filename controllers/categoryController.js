@@ -38,7 +38,9 @@ const removeCategory = async (req, res) => {
   }
 
   try {
-    await category.deleteOne();
+    // Desactivar la categoría
+    category.isActive = false;
+    await category.save();
 
     res.json({
       msg: "Categoria eliminada correctamente.",

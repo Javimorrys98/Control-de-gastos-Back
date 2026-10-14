@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.route("/").post(authMiddleware, createCategory);
 
-router.route("/:id").delete(authMiddleware, removeCategory);
+router.route("/:id/remove").patch(authMiddleware, removeCategory);
 
 export default router;

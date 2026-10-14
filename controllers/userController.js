@@ -14,9 +14,9 @@ const getUserSheets = async (req, res) => {
 
   try {
     const query = { user };
-    const bookings = await Hojas.find(query).sort({ date: "asc" });
+    const sheets = await Hojas.find(query).sort({ date: "asc" });
 
-    res.json(bookings);
+    res.json(sheets);
   } catch (error) {
     console.log(error);
   }
@@ -31,7 +31,7 @@ const getUserCategories = async (req, res) => {
   }
 
   try {
-    const query = { user };
+    const query = { user, isActive: true };
     const categories = await Categorias.find(query);
 
     res.json(categories);
@@ -49,7 +49,7 @@ const getUserPayers = async (req, res) => {
   }
 
   try {
-    const query = { user };
+    const query = { user, isActive: true };
     const payers = await Pagadores.find(query);
 
     res.json(payers);

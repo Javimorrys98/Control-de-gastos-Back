@@ -38,7 +38,9 @@ const removePayer = async (req, res) => {
   }
 
   try {
-    await payer.deleteOne();
+    // Desactivar el pagador
+    payer.isActive = false;
+    await payer.save();
 
     res.json({
       msg: "Pagador eliminado correctamente.",
