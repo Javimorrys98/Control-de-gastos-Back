@@ -8,7 +8,8 @@ import authRoutes from "./routes/authRoutes.js";
 import sheetRoutes from "./routes/sheetRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import payerRoutes from "./routes/payerRoutes.js";
-import templatesRoutes from "./routes/templatesRoutes.js"
+import templatesRoutes from "./routes/templatesRoutes.js";
+import recurringExpenseRoutes from "./routes/recurringExpenseRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import incomeRoutes from "./routes/incomeRoutes.js";
 
@@ -64,7 +65,8 @@ app.use("/api/sheets", sheetRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/payers", payerRoutes);
-app.use("/api/templates", templatesRoutes)
+app.use("/api/templates", templatesRoutes);
+app.use("/api/recurring-expenses", recurringExpenseRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/incomes", incomeRoutes);
 

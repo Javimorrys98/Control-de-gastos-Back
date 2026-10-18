@@ -11,6 +11,7 @@ const createSheet = async (req, res) => {
 
     res.json({
       msg: "Hoja creada correctamente.",
+      sheetId: result._id,
     });
   } catch (error) {
     console.log(error);

@@ -3,6 +3,7 @@ import Categorias from "../models/Categorias.js";
 import Pagadores from "../models/Pagadores.js";
 import Plantillas from "../models/Plantillas.js"
 import Gasto from "../models/Gasto.js";
+import GastoRecurrente from "../models/GastoRecurrente.js";
 import Ingreso from "../models/Ingreso.js";
 
 const getUserSheets = async (req, res) => {
@@ -76,6 +77,32 @@ const getUserTemplates = async (req, res) => {
         });
 
     res.json(templates);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUserRecurringExpenses = async (req, res) => {
+  const { user } = req.params;
+
+  if (user !== req.user._id.toString()) {
+    const error = new Error("Acceso denegado");
+    return res.status(400).json({ msg: error.message });
+  }
+
+  try {
+    const query = { user, isActive: true };
+    const recurringExpenses = await GastoRecurrente.find(query)
+      .populate({
+        path: "category",
+        select: "name",
+      })
+      .populate({
+        path: "payer",
+        select: "name",
+      });
+
+    res.json(recurringExpenses);
   } catch (error) {
     console.log(error);
   }
@@ -214,6 +241,7 @@ export {
   getUserCategories,
   getUserPayers,
   getUserTemplates,
+  getUserRecurringExpenses,
   createPayer,
   createCategory,
   getUserFixedExpenses,
